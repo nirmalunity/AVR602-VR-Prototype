@@ -1,0 +1,11 @@
+{
+    "asset": "e70c0359f41794b9693401ee608b9cb8",
+    "fileName": "01992264-5713-7379-8f0e-e23248a3d8d1_Preview.png",
+    "prompt": "A metallic material suitable for a wrecking ball, with a rugged and slightly worn texture.",
+    "negativePrompt": "",
+    "model": "575ecf67-4425-4939-97b9-5e138b8ee234",
+    "modelName": "Unity Texture2D",
+    "customSeed": 1117694101,
+    "w3CTraceId": "ebc5da2492b29e62d81762478825270b",
+    "refinementMode": "Generation"
+}

@@ -1,0 +1,20 @@
+{
+    "asset": "0154aaf7fe02f4098840da20f5643f03",
+    "fileName": "01992265-4c89-73ab-b377-54f3da1e7b6d.jpg",
+    "prompt": "A rugged metallic texture with scratches and dents, ideal for a wrecking ball.",
+    "negativePrompt": "",
+    "model": "94c4260f-b988-40e7-b3d3-435b9f449bd0",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "899a833ef131faf0b34f880781222d0e",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
