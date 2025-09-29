@@ -1,25 +1,41 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BallLauncher : MonoBehaviour
 {
     public GameObject ballPrefab;
     public Transform spawnPoint;
 
+    public InputActionReference spawnBallAction;
+
     public Transform battingArea; //  center of the grey area
     public Vector2 areaSize = new Vector2(2f, 2f); //  dimensions of the grey area
 
     public float launchForce = 10f;
-    public float upwardAngle = 30f;
-        public float launchInterval = 10f;
+    public float upwardAngle = 0f;
+    public float launchInterval = 10f;
     public float ballLifetime = 10f;
-
+/* 
     void Start()
     {
         InvokeRepeating(nameof(LaunchBall), 2f, launchInterval);
+    } */
+
+
+  void OnEnable()
+    {
+        spawnBallAction.action.performed += LaunchBall;
+        spawnBallAction.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        spawnBallAction.action.performed -= LaunchBall;
+        spawnBallAction.action.Disable();
     }
 
 
-void LaunchBall()
+void LaunchBall(InputAction.CallbackContext context)
 {
    
     GameObject ball = Instantiate(ballPrefab, spawnPoint.position, Quaternion.identity);
@@ -47,7 +63,7 @@ void LaunchBall()
    
     float underSqrt = distanceXZ * Mathf.Tan(angle) - heightDifference;
     if (underSqrt <= 0) {
-        Debug.LogWarning("Launch not possible due to distance and velocity mismatch");
+        Debug.LogWarning("Launch not possible due to distance angle velocity mismatch");
         Destroy(ball);
         return;
     }
