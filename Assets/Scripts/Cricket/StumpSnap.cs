@@ -16,7 +16,8 @@ public class AutoSnapSocket : MonoBehaviour
 
 private void OnTriggerStay(Collider other)
 {
-    if (other.CompareTag("Stump") && !socket.enabled)
+  //  if (other.CompareTag("Stump") && !socket.enabled)
+  if ( !socket.enabled)
     {
      
         if (Vector3.Angle(other.transform.up, Vector3.up) > 60f) {

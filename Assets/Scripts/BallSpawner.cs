@@ -25,7 +25,10 @@ public class BallSpawnerXR : MonoBehaviour
     void SpawnBall(InputAction.CallbackContext context)
     {
         audioSource.PlayOneShot(balldropsound);
-        Instantiate(ballPrefab, playerTransform.position + playerTransform.forward * 2f, Quaternion.identity);
-
+        Instantiate(
+            ballPrefab,
+            playerTransform.position + playerTransform.forward * 2f,
+            Quaternion.identity
+        );
     }
 }

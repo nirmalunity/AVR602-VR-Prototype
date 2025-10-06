@@ -14,7 +14,6 @@ public class PinSound : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        
         if (!hasFallen && rb.linearVelocity.magnitude > 0.5f)
         {
             hasFallen = true;
@@ -24,7 +23,6 @@ public class PinSound : MonoBehaviour
 
     void Update()
     {
-     
         if (hasFallen && rb.IsSleeping())
         {
             hasFallen = false;
