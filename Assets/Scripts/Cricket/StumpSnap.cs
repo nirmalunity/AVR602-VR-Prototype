@@ -1,32 +1,30 @@
-using UnityEngine;
-
 using System.Collections;
+using UnityEngine;
 
 public class AutoSnapSocket : MonoBehaviour
 {
-    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket;    
-    public float snapDuration = 2f;    
-     public float snapDelay = 3f; 
-   void Start()
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor socket;
+    public float snapDuration = 2f;
+    public float snapDelay = 3f;
+
+    void Start()
     {
-        
         socket.enabled = false;
     }
 
-
-private void OnTriggerStay(Collider other)
-{
-  //  if (other.CompareTag("Stump") && !socket.enabled)
-  if ( !socket.enabled)
+    private void OnTriggerStay(Collider other)
     {
-     
-        if (Vector3.Angle(other.transform.up, Vector3.up) > 60f) {
-            StartCoroutine(DelayedSnap());
+        //  if (other.CompareTag("Stump") && !socket.enabled)
+        if (!socket.enabled)
+        {
+            if (Vector3.Angle(other.transform.up, Vector3.up) > 60f)
+            {
+                StartCoroutine(DelayedSnap());
+            }
         }
     }
-}
 
- private IEnumerator DelayedSnap()
+    private IEnumerator DelayedSnap()
     {
         // Wait before enabling the snap
         yield return new WaitForSeconds(snapDelay);
@@ -36,6 +34,4 @@ private void OnTriggerStay(Collider other)
         yield return new WaitForSeconds(snapDuration);
         socket.enabled = false;
     }
-
 }
-

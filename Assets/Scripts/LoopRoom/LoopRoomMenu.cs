@@ -5,21 +5,26 @@ public class CanvasTriggerZone : MonoBehaviour
     public GameObject uiCanvas;
     public GameObject ScoreCanvas;
     public GameDisplayManager displayManager;
-    public bool insideroom = false;
+    public LoopMenuController loopmenu;
+    public bool insidecricketroom = false;
 
-    private void Start()
-    {
-        if (uiCanvas != null)
-            uiCanvas.SetActive(false);
-    }
+    public GameObject hintCanvas;
+    public float displayTime = 5f;
+
+    private void Start() { }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            insideroom = true;
-            if (uiCanvas != null)
-                uiCanvas.SetActive(true);
+            ZoneManager.Instance.SetActiveZone("LoopRoom");
+
+            if (hintCanvas != null)
+            {
+                hintCanvas.SetActive(true);
+                CancelInvoke(nameof(HideCanvas));
+                Invoke(nameof(HideCanvas), displayTime);
+            }
         }
     }
 
@@ -27,38 +32,27 @@ public class CanvasTriggerZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            insideroom = false;
-            if (uiCanvas != null)
-                uiCanvas.SetActive(false);
+            ZoneManager.Instance.SetActiveZone("");
+
+            insidecricketroom = false;
 
             if (ScoreCanvas != null)
                 ScoreCanvas.SetActive(false);
+
+            if (loopmenu.menuCanvas != null)
+                loopmenu.menuCanvas.SetActive(false);
         }
     }
 
     public void ShowCanvas()
     {
-        if (uiCanvas != null && insideroom == true)
+        if (uiCanvas != null && insidecricketroom == true)
             uiCanvas.SetActive(true);
     }
 
-    public void TwoMinutes() => StartTimerAndHide(2);
-
-    public void fiveMinutes() => StartTimerAndHide(5);
-
-    public void tenMinutes() => StartTimerAndHide(10);
-
-    public void noTimeLimit() => StartTimerAndHide(0);
-
-    private void StartTimerAndHide(float minutes)
+    private void HideCanvas()
     {
-        if (displayManager != null)
-            displayManager.StartTimer(minutes);
-
-        if (uiCanvas != null)
-            uiCanvas.SetActive(false);
-
-        if (ScoreCanvas != null)
-            ScoreCanvas.SetActive(true);
+        if (hintCanvas != null)
+            hintCanvas.SetActive(false);
     }
 }

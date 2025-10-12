@@ -28,6 +28,9 @@ public class ScoreManager : MonoBehaviour
     public GameObject videoCanvas;
     public GameObject FourvideoCanvas;
 
+    public VideoPlayer bowledplayer;
+    public GameObject BowledCanvas;
+
     private void Start()
     {
         if (scoreBanner != null)
@@ -53,9 +56,9 @@ public class ScoreManager : MonoBehaviour
             currentWickets++;
             // GetComponent<AudioFader>().PlayAndFadeOut(bowledClip);
             GetComponent<AudioSource>().PlayOneShot(bowledClip);
-
-            ShowBanner("Bowled!");
-            UpdateUI();
+            Invoke(nameof(PlayBowledEffects), 8f);
+            /*    ShowBanner("Bowled!");
+               UpdateUI(); */
         }
         else
         {
@@ -123,6 +126,28 @@ public class ScoreManager : MonoBehaviour
         Invoke(nameof(HideVideo), 8f);
     }
 
+    public void ShowBowled()
+    {
+        if (BowledCanvas != null)
+        {
+            BowledCanvas.SetActive(true);
+
+            if (bowledplayer != null)
+            {
+                bowledplayer.Stop();
+                bowledplayer.Play();
+            }
+
+            Invoke(nameof(HideBowled), 7f);
+        }
+    }
+
+    private void HideBowled()
+    {
+        if (BowledCanvas != null)
+            BowledCanvas.SetActive(false);
+    }
+
     private void HideVideo()
     {
         if (videoCanvas != null)
@@ -130,6 +155,13 @@ public class ScoreManager : MonoBehaviour
 
         if (FourvideoCanvas != null)
             FourvideoCanvas.SetActive(false);
+    }
+
+    private void PlayBowledEffects()
+    {
+        GetComponent<AudioSource>().PlayOneShot(bowledClip);
+        ShowBanner("Bowled!");
+        UpdateUI();
     }
 
     private void EndGame()
@@ -154,10 +186,11 @@ public class ScoreManager : MonoBehaviour
         UpdateUI();
     }
 
-    private void ShowBanner(string message)
+    public void ShowBanner(string message)
     {
         if (scoreBanner != null)
         {
+            scoreBanner.fontSize = message.Length < 5 ? 36 : 20;
             scoreBanner.text = message;
             scoreBanner.gameObject.SetActive(true);
             CancelInvoke(nameof(HideBanner));
@@ -187,10 +220,10 @@ public class ScoreManager : MonoBehaviour
         BallLauncher.OnBallCountChanged -= CheckGameOver;
     }
 
-    private void CheckGameOver(int currentBalls)
+    private void CheckGameOver(int currentBalls, int maxBalls)
     {
         Debug.Log("ScoreManager received ball count: " + currentBalls);
-        if (currentBalls >= 30)
+        if (currentBalls >= maxBalls)
         {
             EndGame();
         }

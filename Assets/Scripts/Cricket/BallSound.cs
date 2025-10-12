@@ -19,7 +19,11 @@ public class BallSoundOnCollision : MonoBehaviour
 
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 1f;
-       // Destroy(gameObject, 20f);
+
+        if (CompareTag("Sphere"))
+        {
+            Destroy(gameObject, 20f);
+        }
     }
 
     void OnCollisionEnter(Collision collision)

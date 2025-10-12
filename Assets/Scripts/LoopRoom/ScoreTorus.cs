@@ -3,7 +3,7 @@ using UnityEngine;
 public class ScoreTorus : MonoBehaviour
 {
     public AudioClip scoreSound;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     public int totalScore = 0;
 

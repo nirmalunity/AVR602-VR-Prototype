@@ -11,7 +11,7 @@ public class GameDisplayManager : MonoBehaviour
     private bool hasTimeLimit = false;
 
     public ScoreTorus[] scTorusList;
-    public CanvasTriggerZone canvastrigger;
+    public LoopMenuController loopmenu;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class GameDisplayManager : MonoBehaviour
             {
                 timeRemaining = 0f;
                 isTimerRunning = false;
-                canvastrigger.ShowCanvas();
+                loopmenu.ShowMainCanvas();
             }
             UpdateTimerDisplay();
         }

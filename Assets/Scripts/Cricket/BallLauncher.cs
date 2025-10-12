@@ -7,6 +7,8 @@ public class BallLauncher : MonoBehaviour
     public GameObject ballPrefab;
     public Transform spawnPoint;
 
+    public XRMenuController xrmenucontroller;
+
     public InputActionReference spawnBallAction;
 
     public Transform battingArea; //  center of the grey area
@@ -14,7 +16,7 @@ public class BallLauncher : MonoBehaviour
 
     public TextMeshProUGUI ballCountText;
 
-    public delegate void BallCountChanged(int ballCount);
+    public delegate void BallCountChanged(int ballCount, int maxballs);
     public static event BallCountChanged OnBallCountChanged;
     private int ballCount = 0;
     public int maxBalls = 30;
@@ -23,6 +25,8 @@ public class BallLauncher : MonoBehaviour
     public float upwardAngle = 0f;
     public float launchInterval = 10f;
     public float ballLifetime = 10f;
+
+    public bool RandomLaunchAngle = false;
 
     /*
         void Start()
@@ -46,7 +50,15 @@ public class BallLauncher : MonoBehaviour
 
     void LaunchBall(InputAction.CallbackContext context)
     {
-        if (ballCount > 30)
+        if (ballCount >= maxBalls)
+        {
+            return;
+        }
+        if (
+            xrmenucontroller.isMenuOpen
+            || ZoneManager.Instance.activeZone != "Cricket"
+            || StumpManager.Instance.fallenStumps > 0
+        )
         {
             return;
         }
@@ -64,6 +76,10 @@ public class BallLauncher : MonoBehaviour
         float distanceXZ = toTargetXZ.magnitude;
         float heightDifference = toTarget.y;
 
+        if (RandomLaunchAngle)
+        {
+            upwardAngle = Random.Range(5f, 30);
+        }
         float angle = upwardAngle * Mathf.Deg2Rad;
         float gravity = Mathf.Abs(Physics.gravity.y);
 
@@ -86,7 +102,7 @@ public class BallLauncher : MonoBehaviour
         rb.linearVelocity = velocityVec;
 
         ballCount++;
-        OnBallCountChanged?.Invoke(ballCount);
+        OnBallCountChanged?.Invoke(ballCount, maxBalls);
         Debug.Log("BallLauncher event fired with count: " + ballCount);
         UpdateBallUI();
 
