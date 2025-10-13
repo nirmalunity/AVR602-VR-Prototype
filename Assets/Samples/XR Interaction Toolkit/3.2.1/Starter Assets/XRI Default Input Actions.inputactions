@@ -3533,7 +3533,7 @@
                 {
                     "name": "",
                     "id": "6a3fd6d2-7ec8-4309-81ab-705358c29aef",
-                    "path": "*/{SecondaryButton}",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
