@@ -17,8 +17,6 @@ public class CrouchManager : MonoBehaviour
     private float targetY;
     private bool isCrouching = false;
 
-    private float logTimer;
-
     void Start()
     {
         originalY = cameraOffset.localPosition.y;
@@ -48,18 +46,10 @@ public class CrouchManager : MonoBehaviour
         Vector3 pos = cameraOffset.localPosition;
         pos.y = Mathf.Lerp(pos.y, targetY, Time.deltaTime * crouchSpeed);
         cameraOffset.localPosition = pos;
-
-        logTimer += Time.deltaTime;
-        if (logTimer >= 0.5f) // print every 0.2 seconds
-        {
-            Debug.Log($"Camera Y Position: {cameraOffset.localPosition.y:F3}");
-            logTimer = 0f;
-        }
     }
 
     public void SetCrouchHeight(int index)
     {
-        Debug.Log($"Dropdown index: {index}");
         switch (index)
         {
             case 0:
@@ -75,7 +65,5 @@ public class CrouchManager : MonoBehaviour
                 crouchHeightOffset = 0.8f;
                 break;
         }
-
-        Debug.Log("Crouch Height set to: " + crouchHeightOffset);
     }
 }
