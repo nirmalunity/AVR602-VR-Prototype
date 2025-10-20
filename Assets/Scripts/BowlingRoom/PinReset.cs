@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class PinManager : MonoBehaviour
     private Quaternion[] initialRotations;
 
     public GameObject gameOverPanel;
+
+    public BowlingPinResetMachine PinresetMachine;
 
     private List<int> allThrows = new List<int>();
     private int throwCount = 0;
@@ -152,6 +155,16 @@ public class PinManager : MonoBehaviour
 
     private void ResetPins()
     {
+        StartCoroutine(ResetPinsCoroutine());
+    }
+
+    private IEnumerator ResetPinsCoroutine()
+    {
+        PinresetMachine.ResetPinMachine();
+
+        // wait for 2 seconds
+        yield return new WaitForSeconds(2f);
+
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform pin = transform.GetChild(i);

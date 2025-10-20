@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e789609742da54066a28860741f4298e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -71.72
+      value: -57.56445
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e789609742da54066a28860741f4298e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.78
+      value: 9.9303
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e789609742da54066a28860741f4298e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -57.18
+      value: -44.31875
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e789609742da54066a28860741f4298e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -87,7 +87,7 @@ PrefabInstance:
       addedObject: {fileID: 3285936492406122231}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e789609742da54066a28860741f4298e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2786529235879881927}
+      addedObject: {fileID: 6549261020902014927}
   m_SourcePrefab: {fileID: 100100000, guid: e789609742da54066a28860741f4298e, type: 3}
 --- !u!1 &7099993003263431204 stripped
 GameObject:
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallSoundOnCollision
   groundHitSound: {fileID: 8300000, guid: 852c9ab29119344c7980d002caad1b9d, type: 3}
   ignoreCollisionTime: 0.2
---- !u!114 &2786529235879881927
+--- !u!114 &6549261020902014927
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,9 +165,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7099993003263431204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: ae2e91b8de9b2418c8ab12fc1d7e9f1a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
+  m_EditorClassIdentifier: Assembly-CSharp::FixedAxisGrab
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
@@ -283,3 +283,4 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+  turnAction: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f, type: 3}

@@ -29,6 +29,10 @@ public class BowlingAreaTrigger : MonoBehaviour
             }
             Destroy(other.gameObject, 10);
         }
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(DelayedPlayerBlock());
+        }
     }
 
     private IEnumerator DelayedThrow(PinManager pm)
@@ -40,6 +44,15 @@ public class BowlingAreaTrigger : MonoBehaviour
 
         SetGreenLight(true);
         col.isTrigger = !col.isTrigger;
+    }
+
+    private IEnumerator DelayedPlayerBlock()
+    {
+        col.isTrigger = !col.isTrigger;
+        SetGreenLight(false);
+        yield return new WaitForSeconds(3f);
+        col.isTrigger = !col.isTrigger;
+        SetGreenLight(true);
     }
 
     public void SetGreenLight(bool state)
